@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.gyamoto.giphy_client_aac.R
 import com.gyamoto.giphy_client_aac.databinding.ActivityTrendBinding
+import com.gyamoto.giphy_client_aac.ui.gif.GifActivity
 import com.gyamoto.giphy_client_aac.uti.observe
 import dagger.android.AndroidInjection
 import javax.inject.Inject
@@ -23,6 +24,10 @@ class TrendActivity : AppCompatActivity() {
             DataBindingUtil.setContentView<ActivityTrendBinding>(this, R.layout.activity_trend)
         binding.setLifecycleOwner(this)
         binding.viewModel = viewModel
+
+        binding.trendList.onClick = {
+            GifActivity.start(this, it)
+        }
 
         viewModel.images.observe(this) {
             Log.i("YoSuccess", it.toString())
