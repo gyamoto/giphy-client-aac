@@ -29,6 +29,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    androidExtensions {
+        experimental = true
+    }
+
     dataBinding {
         enabled = true
     }
@@ -67,6 +71,8 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
     androidTestImplementation "android.arch.navigation:navigation-testing:$nav_version"
+
+    implementation 'androidx.core:core-ktx:0.3'
 
     implementation "com.google.dagger:dagger-android:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
