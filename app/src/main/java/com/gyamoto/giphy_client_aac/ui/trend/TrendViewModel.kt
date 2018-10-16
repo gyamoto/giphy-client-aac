@@ -14,6 +14,10 @@ class TrendViewModel @Inject constructor(
 
     private val _trend = trendRepository.getTrend()
 
+    private val _loading = MediatorLiveData<Boolean>()
+    val loading: LiveData<Boolean>
+        get() = _loading
+
     private val _images = MediatorLiveData<List<Gif>>()
     val images: LiveData<List<Gif>>
         get() = _images
@@ -22,7 +26,11 @@ class TrendViewModel @Inject constructor(
     val error: LiveData<Throwable?>
         get() = _error
 
-    fun loadImages() {
+    init {
+
+        _loading.addSource(_trend) { result ->
+            _loading.value = result is Result.Loading
+        }
 
         _images.addSource(_trend) { result ->
             (result as? Result.Success)?.data?.let {

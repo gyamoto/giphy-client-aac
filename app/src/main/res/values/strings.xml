@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Giphy</string>
 
+    <string name="retry">Retry</string>
     <string name="copy">Copy</string>
     <string name="copied">Copied!</string>
 </resources>

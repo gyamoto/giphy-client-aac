@@ -2,8 +2,8 @@ package com.gyamoto.giphy_client_aac.ui.trend
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.gyamoto.giphy_client_aac.R
 import com.gyamoto.giphy_client_aac.databinding.ActivityTrendBinding
 import com.gyamoto.giphy_client_aac.ui.gif.GifActivity
@@ -29,21 +29,12 @@ class TrendActivity : AppCompatActivity() {
             GifActivity.start(this, it)
         }
 
-        viewModel.images.observe(this) {
-            Log.i("YoSuccess", it.toString())
+        viewModel.error.observe(this) { error ->
+            error?.let {
+                Snackbar.make(binding.trendList, it.localizedMessage, Snackbar.LENGTH_SHORT)
+                    .show()
+            }
         }
-
-        viewModel.error.observe(this) {
-            Log.i("YoError", it.toString())
-        }
-
-        viewModel.loadImages()
     }
-
-//    override fun onStart() {
-//        super.onStart()
-//
-////        viewModel.loadImages()
-//    }
 
 }
