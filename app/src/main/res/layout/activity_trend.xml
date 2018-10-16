@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.gyamoto.giphy_client_aac.ui.trend.TrendViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.gyamoto.giphy_client_aac.ui.trend.TrendRecyclerView
+            android:id="@+id/trend_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:items="@{viewModel.images}" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
