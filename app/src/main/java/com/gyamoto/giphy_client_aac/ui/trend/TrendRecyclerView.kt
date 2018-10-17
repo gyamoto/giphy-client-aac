@@ -1,7 +1,8 @@
 package com.gyamoto.giphy_client_aac.ui.trend
 
+import android.arch.paging.PagedList
+import android.arch.paging.PagedListAdapter
 import android.content.Context
-import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -26,7 +27,7 @@ class TrendRecyclerView @JvmOverloads constructor(
 
     private val listAdapter = Adapter()
 
-    var items: List<Gif>? = emptyList()
+    var items: PagedList<Gif>? = null
         set(value) {
             field = value
             listAdapter.submitList(value)
@@ -39,7 +40,7 @@ class TrendRecyclerView @JvmOverloads constructor(
         layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
     }
 
-    inner class Adapter : ListAdapter<Gif, ViewHolder>(Diff) {
+    inner class Adapter : PagedListAdapter<Gif, ViewHolder>(Diff) {
 
         override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder {
             return ViewHolder(parent)
@@ -53,7 +54,9 @@ class TrendRecyclerView @JvmOverloads constructor(
     inner class ViewHolder(parent: ViewGroup) :
         AbstractViewHolder<ItemTrendBinding>(parent, R.layout.item_trend) {
 
-        fun bind(gif: Gif) {
+        fun bind(gif: Gif?) {
+
+            gif ?: return
 
             Glide.with(binding.root)
                 .load(gif.images.fixedHeight.url)

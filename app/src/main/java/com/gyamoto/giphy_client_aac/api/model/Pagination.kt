@@ -15,4 +15,7 @@ data class Pagination(
     val totalCount: Int,
 
     val count: Int
-) : Parcelable
+) : Parcelable {
+
+    fun next(): Pagination = copy(offset = offset + count)
+}
