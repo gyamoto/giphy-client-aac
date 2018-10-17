@@ -12,7 +12,7 @@ data class Pagination(
     val offset: Int,
 
     @Json(name = "total_count")
-    val total_count: Int,
+    val totalCount: Int,
 
     val count: Int
 ) : Parcelable
