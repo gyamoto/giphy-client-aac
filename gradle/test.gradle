@@ -1,0 +1,8 @@
+apply from: 'versions.gradle'
+
+// =========================
+// Test
+// =========================
+testImplementation 'junit:junit:4.12'
+testImplementation "org.jetbrains.kotlin:kotlin-test:$versions.kotlin"
+testImplementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"

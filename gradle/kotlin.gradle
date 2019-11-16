@@ -1,0 +1,6 @@
+apply from: 'versions.gradle'
+
+// =========================
+// Kotlin
+// =========================
+implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"

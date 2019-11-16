@@ -1,0 +1,35 @@
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'de.mannodermaus.android-junit5'
+
+android {
+
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "com.gyamoto.giphy_client_aac"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    sourceSets.each {
+        it.java.srcDirs += "src/$it.name/kotlin"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        lintConfig file('lint.xml')
+        textReport true
+        textOutput 'stdout'
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}

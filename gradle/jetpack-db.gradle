@@ -1,0 +1,9 @@
+apply from: 'versions.gradle'
+
+// =========================
+// Architecture Component Room
+// =========================
+implementation "androidx.room:room-runtime:$versions.aac_room"
+kapt "androidx.room:room-compiler:$versions.aac_room"
+implementation "androidx.room:room-rxjava2:$versions.aac_room"
+testImplementation "androidx.room:room-testing:$versions.aac_room"

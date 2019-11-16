@@ -4,18 +4,9 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
 
+apply from: rootProject.file('gradle/android.gradle')
+
 android {
-
-    compileSdkVersion 28
-
-    defaultConfig {
-        applicationId "com.gyamoto.giphy_client_aac"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
 
     buildTypes {
         release {
@@ -24,80 +15,20 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
     androidExtensions {
         experimental = true
     }
-
-    dataBinding {
-        enabled = true
-    }
 }
 
+apply(from: rootProject.file('gradle/kotlin.gradle'), to: dependencies)
+apply(from: rootProject.file('gradle/dagger.gradle'), to: dependencies)
+apply(from: rootProject.file('gradle/network.gradle'), to: dependencies)
+apply(from: rootProject.file('gradle/rx.gradle'), to: dependencies)
+apply(from: rootProject.file('gradle/ui.gradle'), to: dependencies)
+apply(from: rootProject.file('gradle/jetpack-ui.gradle'), to: dependencies)
+apply(from: rootProject.file('gradle/jetpack-db.gradle'), to: dependencies)
+apply(from: rootProject.file('gradle/test.gradle'), to: dependencies)
+
 dependencies {
-    def lifecycle_version = '2.1.0'
-    def room_version = '2.2.1'
-    def paging_version = '2.1.0'
-    def nav_version = '2.1.0'
-
-    def dagger_version = '2.24'
-    def retrofit_version = '2.4.0'
-    def ok_http_version = '3.11.0'
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-
-    // Architecture Component Lifecycle, LiveData, ViewModel
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
-    testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
-
-    // Architecture Component Room
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-    implementation "androidx.room:room-rxjava2:$room_version"
-    testImplementation "androidx.room:room-testing:$room_version"
-
-    // Architecture Component Paging
-    implementation "androidx.paging:paging-runtime:$paging_version"
-    implementation "androidx.paging:paging-rxjava2:$paging_version"
-
-    // Architecture Component Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-
-    implementation 'androidx.core:core-ktx:1.1.0'
-
-    implementation "com.google.dagger:dagger-android:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
-
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.13'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
-
-    implementation "com.squareup.okhttp3:okhttp:$ok_http_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$ok_http_version"
-
-    implementation 'com.squareup.moshi:moshi-kotlin:1.7.0'
-    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.7.0'
-
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    kapt 'com.github.bumptech.glide:compiler:4.10.0'
-
-    testImplementation 'junit:junit:4.12'
 }
