@@ -75,7 +75,6 @@ dependencies {
     // Architecture Component Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
-    androidTestImplementation "android.arch.navigation:navigation-testing:$nav_version"
 
     implementation 'androidx.core:core-ktx:0.3'
 
@@ -101,6 +100,4 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.8.0'
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
