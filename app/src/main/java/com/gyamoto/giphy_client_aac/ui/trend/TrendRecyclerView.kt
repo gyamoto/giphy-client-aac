@@ -1,11 +1,11 @@
 package com.gyamoto.giphy_client_aac.ui.trend
 
-import android.arch.paging.PagedList
-import android.arch.paging.PagedListAdapter
+import androidx.paging.PagedList
+import androidx.paging.PagedListAdapter
 import android.content.Context
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
@@ -37,7 +37,12 @@ class TrendRecyclerView @JvmOverloads constructor(
 
     init {
         adapter = listAdapter
-        layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+        layoutManager = GridLayoutManager(
+            context,
+            2,
+            GridLayoutManager.VERTICAL,
+            false
+        )
     }
 
     inner class Adapter : PagedListAdapter<Gif, ViewHolder>(Diff) {

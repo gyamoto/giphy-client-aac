@@ -1,7 +1,7 @@
 package com.gyamoto.giphy_client_aac.domain
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.paging.DataSource
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.DataSource
 import com.gyamoto.giphy_client_aac.api.model.Gif
 import com.gyamoto.giphy_client_aac.api.model.Pagination
 import com.gyamoto.giphy_client_aac.api.trend.GiphyTrendApi

@@ -1,9 +1,9 @@
 package com.gyamoto.giphy_client_aac.ui.trend
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MediatorLiveData
-import android.arch.lifecycle.ViewModel
-import android.arch.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.ViewModel
+import androidx.paging.PagedList
 import com.gyamoto.giphy_client_aac.api.model.Gif
 import com.gyamoto.giphy_client_aac.domain.TrendRepository
 import javax.inject.Inject

@@ -1,9 +1,9 @@
 package com.gyamoto.giphy_client_aac.uti
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.Transformations
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.Transformations
 
 inline fun <S, T> LiveData<T>.map(crossinline func: (T?) -> S?): LiveData<S> {
     return Transformations.map(this) { func(it) }

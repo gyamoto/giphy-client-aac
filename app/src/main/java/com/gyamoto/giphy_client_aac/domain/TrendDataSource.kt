@@ -1,7 +1,7 @@
 package com.gyamoto.giphy_client_aac.domain
 
 import android.annotation.SuppressLint
-import android.arch.paging.PageKeyedDataSource
+import androidx.paging.PageKeyedDataSource
 import com.gyamoto.giphy_client_aac.api.model.Gif
 import com.gyamoto.giphy_client_aac.api.model.Pagination
 import com.gyamoto.giphy_client_aac.api.trend.GiphyTrendApi

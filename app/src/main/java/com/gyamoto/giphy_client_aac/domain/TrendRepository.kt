@@ -1,8 +1,8 @@
 package com.gyamoto.giphy_client_aac.domain
 
-import android.arch.lifecycle.LiveData
-import android.arch.paging.LivePagedListBuilder
-import android.arch.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.gyamoto.giphy_client_aac.api.model.Gif
 import com.gyamoto.giphy_client_aac.api.model.Pagination
 import com.gyamoto.giphy_client_aac.api.trend.GiphyTrendApi

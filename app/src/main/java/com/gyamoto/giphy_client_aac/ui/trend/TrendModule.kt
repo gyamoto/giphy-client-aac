@@ -1,6 +1,6 @@
 package com.gyamoto.giphy_client_aac.ui.trend
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.gyamoto.giphy_client_aac.di.ViewModelKey
 import dagger.Binds
 import dagger.Module

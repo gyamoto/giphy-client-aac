@@ -1,9 +1,9 @@
 package com.gyamoto.giphy_client_aac.ui.trend
 
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import com.gyamoto.giphy_client_aac.R
 import com.gyamoto.giphy_client_aac.databinding.ActivityTrendBinding
 import com.gyamoto.giphy_client_aac.ui.gif.GifActivity
