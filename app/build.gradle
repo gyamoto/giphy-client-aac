@@ -23,7 +23,6 @@ android {
 apply(from: rootProject.file('gradle/kotlin.gradle'), to: dependencies)
 apply(from: rootProject.file('gradle/dagger.gradle'), to: dependencies)
 apply(from: rootProject.file('gradle/network.gradle'), to: dependencies)
-apply(from: rootProject.file('gradle/rx.gradle'), to: dependencies)
 apply(from: rootProject.file('gradle/ui.gradle'), to: dependencies)
 apply(from: rootProject.file('gradle/jetpack-ui.gradle'), to: dependencies)
 apply(from: rootProject.file('gradle/jetpack-db.gradle'), to: dependencies)
