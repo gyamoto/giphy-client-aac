@@ -1,5 +1,6 @@
 package com.gyamoto.giphy_client_aac.domain
 
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.gyamoto.giphy_client_aac.api.model.Gif
 import com.gyamoto.giphy_client_aac.api.model.Pagination
@@ -13,6 +14,17 @@ class TrendDataSource(
     private val trendApi: GiphyTrendApi
 ) : PageKeyedDataSource<Pagination, Gif>(), CoroutineScope {
 
+    private var retry: (() -> Any)? = null
+
+    val initialLoad = MutableLiveData<NetworkState>()
+    val networkState = MutableLiveData<NetworkState>()
+
+    fun retryAllFailed() {
+        val prevRetry = retry
+        retry = null
+        prevRetry?.invoke()
+    }
+
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO
 
@@ -21,12 +33,21 @@ class TrendDataSource(
         callback: LoadInitialCallback<Pagination, Gif>
     ) {
         launch {
+
+            networkState.postValue(NetworkState.LOADING)
+            initialLoad.postValue(NetworkState.LOADING)
+
             runCatching {
                 trendApi.trending()
             }.onSuccess {
+                networkState.postValue(NetworkState.LOADED)
+                initialLoad.postValue(NetworkState.LOADED)
                 callback.onResult(it.data, null, it.pagination.next())
             }.onFailure {
-                // FIXME: Error handling
+                val error = NetworkState.error(it.message ?: it.localizedMessage)
+                networkState.postValue(error)
+                initialLoad.postValue(error)
+                retry = { loadInitial(params, callback) }
             }
         }
     }
@@ -43,12 +64,17 @@ class TrendDataSource(
         callback: LoadCallback<Pagination, Gif>
     ) {
         launch {
+
+            networkState.postValue(NetworkState.LOADING)
+
             runCatching {
                 trendApi.trending(offset = params.key.offset)
             }.onSuccess {
+                networkState.postValue(NetworkState.LOADED)
                 callback.onResult(it.data, it.pagination.next())
             }.onFailure {
-                // FIXME: Error handling
+                networkState.postValue(NetworkState.error(it.message ?: it.localizedMessage))
+                retry = { loadAfter(params, callback) }
             }
         }
     }

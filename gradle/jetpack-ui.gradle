@@ -1,12 +1,18 @@
 apply from: 'versions.gradle'
 
 // =========================
-// Architecture Component Lifecycle, LiveData, ViewModel
+// Extension
 // =========================
 implementation 'androidx.core:core-ktx:1.1.0'
-implementation "androidx.lifecycle:lifecycle-extensions:$versions.aac_lifecycle"
+
+// =========================
+// Architecture Component Lifecycle, LiveData, ViewModel
+// =========================
+implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.aac_lifecycle"
+implementation "androidx.lifecycle:lifecycle-livedata:$versions.aac_lifecycle"
+kapt "androidx.lifecycle:lifecycle-compiler:$versions.aac_lifecycle"
 implementation "androidx.lifecycle:lifecycle-common-java8:$versions.aac_lifecycle"
-implementation "androidx.lifecycle:lifecycle-reactivestreams:$versions.aac_lifecycle"
+implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$versions.aac_lifecycle"
 testImplementation "androidx.arch.core:core-testing:$versions.aac_lifecycle"
 
 // =========================
@@ -18,5 +24,5 @@ implementation "androidx.navigation:navigation-ui-ktx:$versions.aac_navigation"
 // =========================
 // Architecture Component Paging
 // =========================
-implementation "androidx.paging:paging-runtime:$versions.aac_paging"
-implementation "androidx.paging:paging-rxjava2:$versions.aac_paging"
+implementation "androidx.paging:paging-runtime-ktx:$versions.aac_paging"
+testImplementation "androidx.paging:paging-common-ktx:$versions.acc_paging"

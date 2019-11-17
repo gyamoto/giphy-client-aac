@@ -1,31 +1,31 @@
 package com.gyamoto.giphy_client_aac.ui.trend
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import com.gyamoto.giphy_client_aac.api.model.Gif
+import com.gyamoto.giphy_client_aac.domain.NetworkState
 import com.gyamoto.giphy_client_aac.domain.TrendRepository
+import com.gyamoto.giphy_client_aac.uti.map
 import javax.inject.Inject
 
 class TrendViewModel @Inject constructor(
     trendRepository: TrendRepository
 ) : ViewModel() {
 
-    private val _loading = MediatorLiveData<Boolean>()
-    val loading: LiveData<Boolean>
-        get() = _loading
+    private val trend = trendRepository.getTrendDataSource()
 
-    private val _error = MediatorLiveData<Throwable?>()
-    val error: LiveData<Throwable?>
-        get() = _error
+    val loading: LiveData<Boolean> = trend.networkState.map { it == NetworkState.LOADING }
 
-    val images: LiveData<PagedList<Gif>>
+    val error: LiveData<String?> = trend.networkState.map { it.message }
 
-    init {
+    val images: LiveData<PagedList<Gif>> = trend.pagedList
 
-        // FIXME: `PagedList` でLoading/Errorを表示する
+    fun refresh() {
+        trend.refresh()
+    }
 
-        images = trendRepository.getTrendDataSource()
+    fun retry() {
+        trend.retry()
     }
 }

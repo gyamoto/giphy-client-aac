@@ -31,7 +31,7 @@ class TrendActivity : AppCompatActivity() {
 
         viewModel.error.observe(this) { error ->
             error?.let {
-                Snackbar.make(binding.trendList, it.localizedMessage, Snackbar.LENGTH_SHORT)
+                Snackbar.make(binding.trendList, it, Snackbar.LENGTH_SHORT)
                     .show()
             }
         }
